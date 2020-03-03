@@ -25,7 +25,7 @@ namespace Senai.InLock.WebApi.Domains
 
         public EstudioDomain Estudio { get; set; }
 
-        JogoDomain()
+        public JogoDomain()
         {
             this.Estudio = new EstudioDomain();
         }

@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Senai.InLock.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:Senai.InLock.WebApi.Controllers.EstudiosController.Listar">
+            <summary>
+            Retorna uma lista de estudios e seus jogos cadastrados
+            </summary>
+        </member>
+        <member name="M:Senai.InLock.WebApi.Controllers.EstudiosController.BuscarEstudio(System.String)">
+             <summary>
+             Busca pelo nome o estudio
+             </summary>
+            <param name="nome">Nome do Estudio que ira achar o estudio(s)</param>
+        </member>
+        <member name="M:Senai.InLock.WebApi.Controllers.EstudiosController.Cadastrar(Senai.InLock.WebApi.Domains.EstudioDomain)">
+             <summary>
+             Cadastra um novo estudio
+             </summary>
+             <remarks>
+             Sample response:
+             
+                 {
+                     "NomeEstudio": "Name"
+                 }
+                 
+            </remarks>
+             <param name="estudio">Objeto Estudio que sera cadastrado</param>
+        </member>
+        <member name="M:Senai.InLock.WebApi.Controllers.JogosController.ListarTodos">
+            <summary>
+            Lista todo os Jogos do Banco de dados
+            </summary>
+            <returns>Uma lista com os jogos</returns>
+        </member>
+        <member name="M:Senai.InLock.WebApi.Controllers.JogosController.BuscarId(System.Int32)">
+            <summary>
+            Busca o jogo pelo id informado
+            </summary>
+            <param name="id">Id do jogo que sera buscado</param>
+            <returns></returns>
+        </member>
+        <member name="M:Senai.InLock.WebApi.Controllers.JogosController.Cadastrar(Senai.InLock.WebApi.Domains.JogoDomain)">
+             <summary>
+             Cadastra um novo jogo
+             </summary>
+             <remarks>
+             Sample response:
+             
+                  {
+                    "NomeJogo": "Name",
+                    "Descricao" : "description",
+                    "Datalancamento" : "01/01/0001",
+                    "Valor" : 0,
+                    "IdEstudio": 0
+                    }
+                 
+            </remarks>
+             <param name="jogo">Objeto que sera cadastrado</param>
+             <returns>o proprio objeto</returns>
+        </member>
+        <member name="M:Senai.InLock.WebApi.Controllers.JogosController.Delete(System.Int32)">
+            <summary>
+            Deleta um jogo pelo id informado
+            </summary>
+            <param name="id">Id que sera usado para encontrar o jogo certo a ser deletado</param>
+            <returns></returns>
+        </member>
+        <member name="M:Senai.InLock.WebApi.Controllers.LoginController.Login(Senai.InLock.WebApi.ViewModels.LoginViewModel)">
+            <summary>
+            Metodo que gera um token para logar o usuario
+            </summary>
+            <param name="lg">lg é login o objeto que vem com o email é senha do usuario</param>
+            <returns>Retorna o token gerado</returns>
+        </member>
+        <member name="M:Senai.InLock.WebApi.Controllers.UsuarioController.Listar">
+            <summary>
+            Lista todos os Usuarios
+            </summary>
+            <returns>Retorna uma Lista de Usuarios</returns>
+        </member>
+        <member name="M:Senai.InLock.WebApi.Controllers.UsuarioController.BuscarId(System.Int32)">
+            <summary>
+            Busca u usuario pelo Id
+            </summary>
+            <returns>Retorna um objeto usuario </returns>
+        </member>
+        <member name="M:Senai.InLock.WebApi.Controllers.UsuarioController.Cadastrar(Senai.InLock.WebApi.Domains.UsuarioDomain)">
+             <summary>
+             Cadastra um novo usuario
+             </summary>
+            <remarks>
+             Sample response:
+             
+                  {
+                    "Email": "Name",
+                    "Senha" : "password",
+                    "IdTipoUsuario" : 0
+                   }
+                 
+            </remarks>
+             <param name="user">Objeto Usuario que vai ser cadastrado</param>
+             <returns></returns>
+        </member>
+        <member name="M:Senai.InLock.WebApi.Controllers.UsuarioController.Remover(System.Int32)">
+            <summary>
+            Remove um Usuario
+            </summary>
+            <param name="id">paramentro para encontrar o usuario a ser removido</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

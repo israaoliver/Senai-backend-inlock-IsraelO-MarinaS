@@ -24,7 +24,7 @@ namespace Senai.InLock.WebApi.Domains
 
         public TiposUsuarioDomain TipoUsuario { get; set; }
 
-        UsuarioDomain()
+        public UsuarioDomain()
         {
             this.TipoUsuario = new TiposUsuarioDomain();
         }

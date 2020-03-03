@@ -10,7 +10,14 @@ namespace Senai.InLock.WebApi.Repositories
 {
     public class EstudioRepository : IEstudioRepository
     {
-        private string conexao = "Data Source=DEV9\\SQLEXPRESS; initial catalog=T_Peoples; user Id=sa; pwd=sa@132;";
+        private string conexao = "Data Source=DESKTOP-16CG1FL\\SQLEXPRESS; initial catalog=Inlock_Games_Tarde; user Id=sa; pwd=sa@132;";
+
+        private IJogosRepository _jogosRepository { get; set; }
+
+        public EstudioRepository()
+        {
+            _jogosRepository = new JogosRepository();
+        }
 
         public List<EstudioDomain> BuscarEstudio(string nome)
         {
@@ -18,10 +25,13 @@ namespace Senai.InLock.WebApi.Repositories
 
             using (SqlConnection con = new SqlConnection(conexao))
             {
-                string busca = $"SELECT IdEstudio, NomeEstudio FROM Estudios WHERE NomeEstudio LIKE '%{nome}%'";
+                // SELECT Jogos.IdJogos, Jogos.NomeJogo, Jogos.Descricao, Jogos.DataLancamento, Jogos.Valor, Jogos.IdEstudio, Estudios.NomeEstudio FROM Jogos
+                //INNER JOIN Estudios ON Estudios.IdEstudio = Jogos.IdEstudio WHERE Estudios.IdEstudio = @ID
+                string busca = $"EXECUTE BuscarEstudio {nome}";
 
                 using (SqlCommand cmd = new SqlCommand(busca, con))
                 {
+                    con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
 
                     if (rdr.HasRows)
@@ -31,7 +41,8 @@ namespace Senai.InLock.WebApi.Repositories
                             EstudioDomain e = new EstudioDomain
                             {
                                 IdEstudio = Convert.ToInt32(rdr[0]),
-                                NomeEstudio = rdr[1].ToString()
+                                NomeEstudio = rdr[1].ToString(),
+                                ListaDeJogos = _jogosRepository.BuscarPorEstudio(Convert.ToInt32(rdr[0]))
                             };
 
                             estudios.Add(e);
@@ -45,7 +56,17 @@ namespace Senai.InLock.WebApi.Repositories
 
         public void Cadastrar(EstudioDomain estudio)
         {
-            throw new NotImplementedException();
+            using(SqlConnection con = new SqlConnection(conexao))
+            {
+                string cadastrar = $"INSERT INTO Estudios(NomeEstudio) VALUES ('{estudio.NomeEstudio}')";
+
+                using (SqlCommand cmd = new SqlCommand(cadastrar, con))
+                {
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public List<EstudioDomain> Listar()
@@ -58,6 +79,7 @@ namespace Senai.InLock.WebApi.Repositories
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
+                    con.Open();
                     SqlDataReader rdr = cmd.ExecuteReader();
 
                     while(rdr.Read())
@@ -65,7 +87,8 @@ namespace Senai.InLock.WebApi.Repositories
                         EstudioDomain e = new EstudioDomain
                         {
                             IdEstudio = Convert.ToInt32(rdr[0]),
-                            NomeEstudio = rdr[1].ToString()
+                            NomeEstudio = rdr[1].ToString(),
+                            ListaDeJogos = _jogosRepository.BuscarPorEstudio(Convert.ToInt32(rdr[0]))
                         };
 
                         estudios.Add(e);

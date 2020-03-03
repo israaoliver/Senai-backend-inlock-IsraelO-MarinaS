@@ -9,12 +9,14 @@ namespace Senai.InLock.WebApi.Interfaces
 {
     interface IUsuarioRepository
     {
-        List<UsuarioDomain> Lisar();
+        List<UsuarioDomain> Listar();
 
         void Cadastrar(UsuarioDomain user);
 
-        void Deletar(int id);
+        void Remover(int id);
 
         UsuarioDomain Autenticando(LoginViewModel login);
+
+        UsuarioDomain BuscarId(int id);
     }
 }
