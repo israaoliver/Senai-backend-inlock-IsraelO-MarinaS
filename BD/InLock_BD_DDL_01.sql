@@ -1,7 +1,7 @@
 CREATE Database Inlock_Games_Tarde
-
+go
 use Inlock_Games_Tarde
-
+go
 CREATE TABLE Estudios(
 	IdEstudio INT PRIMARY KEY IDENTITY,
 	NomeEstudio VARCHAR(255) NOT NULL UNIQUE

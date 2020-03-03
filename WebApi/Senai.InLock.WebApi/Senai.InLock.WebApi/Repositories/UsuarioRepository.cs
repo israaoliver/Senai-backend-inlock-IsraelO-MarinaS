@@ -11,7 +11,7 @@ namespace Senai.InLock.WebApi.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private string conexao = "Data Source=DESKTOP-16CG1FL\\SQLEXPRESS; initial catalog=Inlock_Games_Tarde; user Id=sa; pwd=sa@132;";
+        private string conexao = "Data Source=DEV9\\SQLEXPRESS; initial catalog=Inlock_Games_Tarde; user Id=sa; pwd=sa@132;";
 
         public UsuarioDomain Autenticando(LoginViewModel login)
         {

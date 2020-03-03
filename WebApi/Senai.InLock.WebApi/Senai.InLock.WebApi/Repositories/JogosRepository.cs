@@ -11,7 +11,7 @@ namespace Senai.InLock.WebApi.Repositories
     public class JogosRepository : IJogosRepository
     {
 
-        private string conexao = "Data Source=DESKTOP-16CG1FL\\SQLEXPRESS; initial catalog=Inlock_Games_Tarde; user Id=sa; pwd=sa@132;";
+        private string conexao = "Data Source=DEV9\\SQLEXPRESS; initial catalog=Inlock_Games_Tarde; user Id=sa; pwd=sa@132;";
 
         public JogoDomain BuscarId(int id)
         {
@@ -56,7 +56,8 @@ namespace Senai.InLock.WebApi.Repositories
             using (SqlConnection con = new SqlConnection(conexao))
             {
                 // query que busca no bd apenas os jogos que o o id do estudio seja o mesmo
-                // SELECT IdEstudio, NomeEstudio FROM Estudios WHERE NomeEstudio LIKE '%'+ @NOME + '%'
+                //SELECT Jogos.IdJogos, Jogos.NomeJogo, Jogos.Descricao, Jogos.DataLancamento, Jogos.Valor, Jogos.IdEstudio, Estudios.NomeEstudio FROM Jogos
+                //INNER JOIN Estudios ON Estudios.IdEstudio = Jogos.IdEstudio WHERE Estudios.IdEstudio = @ID
                 string queryPorEstudio = $"EXECUTE PegarPorEstudio {idEstudio}";
 
                 using (SqlCommand cmd = new SqlCommand(queryPorEstudio, con))
@@ -74,11 +75,6 @@ namespace Senai.InLock.WebApi.Repositories
                             DataLancamento = Convert.ToDateTime(rdr[3]),
                             Valor = Convert.ToDouble(rdr[4]),
                             IdEstudio = Convert.ToInt32(rdr[5]),
-                            Estudio =
-                            {
-                                IdEstudio = Convert.ToInt32(rdr[5]),
-                                NomeEstudio = rdr[6].ToString()
-                            }
                         };
 
                         jogos.Add(j);

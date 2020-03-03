@@ -10,7 +10,7 @@ namespace Senai.InLock.WebApi.Repositories
 {
     public class EstudioRepository : IEstudioRepository
     {
-        private string conexao = "Data Source=DESKTOP-16CG1FL\\SQLEXPRESS; initial catalog=Inlock_Games_Tarde; user Id=sa; pwd=sa@132;";
+        private string conexao = "Data Source=DEV9\\SQLEXPRESS; initial catalog=Inlock_Games_Tarde; user Id=sa; pwd=sa@132;";
 
         private IJogosRepository _jogosRepository { get; set; }
 
@@ -25,8 +25,7 @@ namespace Senai.InLock.WebApi.Repositories
 
             using (SqlConnection con = new SqlConnection(conexao))
             {
-                // SELECT Jogos.IdJogos, Jogos.NomeJogo, Jogos.Descricao, Jogos.DataLancamento, Jogos.Valor, Jogos.IdEstudio, Estudios.NomeEstudio FROM Jogos
-                //INNER JOIN Estudios ON Estudios.IdEstudio = Jogos.IdEstudio WHERE Estudios.IdEstudio = @ID
+                // SELECT IdEstudio, NomeEstudio FROM Estudios WHERE NomeEstudio LIKE '%'+ @NOME + '%';
                 string busca = $"EXECUTE BuscarEstudio {nome}";
 
                 using (SqlCommand cmd = new SqlCommand(busca, con))

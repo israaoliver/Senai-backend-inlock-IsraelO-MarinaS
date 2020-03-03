@@ -17,6 +17,7 @@ namespace Senai.InLock.WebApi.Domains
 
         public string Descricao { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime DataLancamento { get; set; }
 
         public double Valor { get; set; }

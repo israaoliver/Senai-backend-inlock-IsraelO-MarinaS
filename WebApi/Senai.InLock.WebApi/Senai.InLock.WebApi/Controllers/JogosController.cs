@@ -70,7 +70,7 @@ namespace Senai.InLock.WebApi.Controllers
         ///      {
         ///        "NomeJogo": "Name",
         ///        "Descricao" : "description",
-        ///        "Datalancamento" : "01/01/0001",
+        ///        "Datalancamento" : "2015-08-27T15:00:00.000+00:00",
         ///        "Valor" : 0,
         ///        "IdEstudio": 0
         ///        }
@@ -81,11 +81,11 @@ namespace Senai.InLock.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [Authorize(Roles = "2")]
         [HttpPost]
-        public IActionResult Cadastrar(JogoDomain jogo)
+        public IActionResult Post(JogoDomain jogo)
         {
             _jogosRepository.CadastrarJogo(jogo);
 
-            return Created("http://localhost:5000/api/Jogos", jogo);
+            return StatusCode(201);
         }
 
         /// <summary>

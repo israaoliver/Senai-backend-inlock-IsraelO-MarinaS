@@ -42,7 +42,7 @@
             <param name="id">Id do jogo que sera buscado</param>
             <returns></returns>
         </member>
-        <member name="M:Senai.InLock.WebApi.Controllers.JogosController.Cadastrar(Senai.InLock.WebApi.Domains.JogoDomain)">
+        <member name="M:Senai.InLock.WebApi.Controllers.JogosController.Post(Senai.InLock.WebApi.Domains.JogoDomain)">
              <summary>
              Cadastra um novo jogo
              </summary>
@@ -52,7 +52,7 @@
                   {
                     "NomeJogo": "Name",
                     "Descricao" : "description",
-                    "Datalancamento" : "01/01/0001",
+                    "Datalancamento" : "2015-08-27T15:00:00.000+00:00",
                     "Valor" : 0,
                     "IdEstudio": 0
                     }

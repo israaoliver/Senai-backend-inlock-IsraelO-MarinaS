@@ -8,6 +8,9 @@ SELECT * FROM Usuarios;
 SELECT Estudios.NomeEstudio, Jogos.NomeJogo FROM Estudios
 INNER JOIN Jogos ON Estudios.IdEstudio = Jogos.IdEstudio
 
+SELECT Estudios.NomeEstudio, Jogos.NomeJogo FROM Estudios
+LEFT JOIN Jogos ON Estudios.IdEstudio = Jogos.IdEstudio
+
 
 -- Procedural para pegar o jogos de um determinado estudio passando o id do estudio
 CREATE PROCEDURE PegarPorEstudio
@@ -16,7 +19,9 @@ AS
 SELECT Jogos.IdJogos, Jogos.NomeJogo, Jogos.Descricao, Jogos.DataLancamento, Jogos.Valor, Jogos.IdEstudio, Estudios.NomeEstudio FROM Jogos
        INNER JOIN Estudios ON Estudios.IdEstudio = Jogos.IdEstudio WHERE Estudios.IdEstudio = @ID
 
-Execute PegarPorEstudio 1
+Execute PegarPorEstudio 3
+
+
 
 --Procedural para buscar um estudio pelo nome dele
 CREATE PROCEDURE BuscarEstudio
@@ -24,7 +29,7 @@ CREATE PROCEDURE BuscarEstudio
 AS
 SELECT IdEstudio, NomeEstudio FROM Estudios WHERE NomeEstudio LIKE '%'+ @NOME + '%';
 
-EXECUTE BuscarEstudio bli
+EXECUTE BuscarEstudio rock
 
 --Procedural que pega todos os jogos e o nome dos estudios
 CREATE PROCEDURE ListarJogos
@@ -41,7 +46,7 @@ AS
 SELECT Jogos.IdJogos, Jogos.NomeJogo, Jogos.Descricao, Jogos.DataLancamento, Jogos.Valor, Jogos.IdEstudio, Estudios.NomeEstudio FROM Jogos 
 INNER JOIN Estudios ON Estudios.IdEstudio = Jogos.IdEstudio WHERE Jogos.IdJogos = @ID
 
-EXECUTE JogoId 1
+EXECUTE JogoId 2
 
 -- Autentica se o usuario existe no bd recebendo a senha e o email
 CREATE PROCEDURE Autentica
